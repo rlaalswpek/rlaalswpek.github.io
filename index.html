@@ -79,7 +79,7 @@
          ball = 0;
           
          if(no1 == "" || no2 == "" || no3 == ""){
-            display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '입력 오류!' + '\n' + display.value;
+            display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '다시 입력하세요!' + '\n' + display.value;
          }
          else{
             if(no1 == key1){
@@ -110,13 +110,13 @@
                strike++;
             }
             if(strike == 3){
-               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + 'HOME RUN!' + '\n' + display.value;
+               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '3스트라이크!' + '\n' + display.value;
             }
             else if(strike==0 && ball==0){
-               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + 'OUT!' + '\n' + display.value;
+               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '아웃!' + '\n' + display.value;
             }
             else{
-               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + strike + ' S ' + ball + ' B ' + '\n' + display.value;
+               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + strike + ' 스트라이크 ' + ball + ' 볼 ' + '\n' + display.value;
             }
          }
          document.getElementById("no1").focus();
@@ -143,12 +143,12 @@
     </tr>
     <tr>
         <from>
-               <td class="morebut">
-                <h1><p> &nbsp; 각자 다른 숫자 3개를 중복없이 입력해주세요!</p></h1>
+               <td class="morebtn">
+                <h1><p class="pp"> &nbsp; 각자 다른 숫자 3개를 중복없이 입력해주세요!</p></h1>
                 <input type='text' id='no1' name='no1' size='1' maxlength='1' onkeyup='check(this)' placeholder="0">
                 <input type='text' id='no2' name='no2' size='1' maxlength='1' onkeyup='check(this)' placeholder="0">
                 <input type='text' id='no3' name='no3' size='1' maxlength='1' onkeyup='check(this)' placeholder="0">
-                <input type='button' value='재시작' onclick='location.reload()'>
+                <button type="button" id='no4' class="btn btn-default" onclick='location.reload()'>재시작</button>
             </td>
         </from>
     </tr>
