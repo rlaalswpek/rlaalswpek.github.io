@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>숫자야구</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      var key1, key2, key3, strike, ball, no1, no2, no3, display;
+      function init(){
+         key1 = Math.round(Math.random() * 9);
+         key2 = key1;
+         key3 = key1;
+         while(1){
+            if(key2!=key1){
+               break;
+            }
+            else{
+               key2 = Math.round(Math.random() * 9);
+            }
+         }
+         while(1){
+            if(key3!=key1 && key3!=key2){
+               break;
+            }
+            else{
+               key3 = Math.round(Math.random() * 9);
+            }
+         }
+         document.getElementById("no1").focus();
+      }
+      function check(obj){
+         if(obj.id=="no1"){
+            if(obj.value.charCodeAt(0) < 48 || obj.value.charCodeAt(0) > 57){
+               obj.value = "";
+               obj.value.focus();
+            }
+            else{
+               document.getElementById("no2").focus();
+            }
+         }
+         else if(obj.id=="no2"){
+            if(obj.value.charCodeAt(0) < 48 || obj.value.charCodeAt(0) > 57){
+               obj.value = "";
+               obj.value.focus();
+            }
+            else if(obj.value == document.getElementById("no1").value){
+               obj.value = "";
+               obj.value.focus();
+            }
+            else{
+              document.getElementById("no3").focus();
+            }
+         }
+         else if(obj.id=="no3"){
+            if(obj.value.charCodeAt(0) < 48 || obj.value.charCodeAt(0) > 57){
+               obj.value = "";
+               obj.value.focus();
+            }
+            else if(obj.value == document.getElementById("no1").value || obj.value == document.getElementById("no2").value){
+               obj.value = "";
+               obj.value.focus();
+            }
+            else{
+               hit();
+            }
+         }
+      }
+      function hit(){
+         no1 = document.getElementById("no1").value;
+         no2 = document.getElementById("no2").value;
+         no3 = document.getElementById("no3").value;
+         display = document.getElementById("display");
+          
+         document.getElementById("no1").value = '';
+         document.getElementById("no2").value = '';
+         document.getElementById("no3").value = '';
+          
+         strike = 0;
+         ball = 0;
+          
+         if(no1 == "" || no2 == "" || no3 == ""){
+            display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '다시 입력하세요!' + '\n' + display.value;
+         }
+         else{
+            if(no1 == key1){
+               strike++;
+            }
+            if(no1 == key2){
+               ball++;
+            }
+            if(no1 == key3){
+               ball++;
+            }
+            if(no2 == key1){
+               ball++;
+            }
+            if(no2 == key2){
+               strike++;
+            }
+            if(no2 == key3){
+               ball++;
+            }
+            if(no3 == key1){
+               ball++;
+            }
+            if(no3 == key2){
+               ball++;
+            }
+            if(no3 == key3){
+               strike++;
+            }
+            if(strike == 3){
+               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '3 스트라이크!' + '\n' + display.value;
+            }
+            else if(strike==0 && ball==0){
+               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + '아웃!' + '\n' + display.value;
+            }
+            else{
+               display.value = no1 + ' ' + no2 + ' ' + no3 + ' ' + ' : ' + strike + ' 스트라이크! ' + ball + ' 볼! ' + '\n' + display.value;
+            }
+         }
+         document.getElementById("no1").focus();
+ 
+      }
+   </script>
+</head>
+<div class="wrap">
+<body onload='init()'>
+<header>
+<h1>신난다 재미난다 팅팅탱탱 야구게임!</h1>
+</header>
+<div id="bar">
+<div>?</div>
+<div>?</div>
+<div>?</div>
+</div>
+<form id='form' name='form'>
+<table class="ye">
+    <tr>
+        <td>
+            <textarea name='display' id='display' cols='100' rows='30'> </textarea>
+        </td>
+    </tr>
+    <tr>
+        <from>
+               <td class="morebtn">
+                <h1><p class="pp"> &nbsp; 각자 다른 숫자 3개를 중복없이 입력해주세요!</p></h1>
+                <input type='text' id='no1' name='no1' size='1' maxlength='1' onkeyup='check(this)' placeholder="0">
+                <input type='text' id='no2' name='no2' size='1' maxlength='1' onkeyup='check(this)' placeholder="0">
+                <input type='text' id='no3' name='no3' size='1' maxlength='1' onkeyup='check(this)' placeholder="0">
+                <button type="button" id='no4' class="btn btn-default" onclick='location.reload()'>재시작</button>
+                <button type="button" id="no5" class="btn-btn-default" onclick='document.getElementById()'>입력</button>
+            </td>
+        </from>
+    </tr>
+</table>
+
+</form>
+</body>
+</div>
+</html>
